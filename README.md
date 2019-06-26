@@ -5,11 +5,12 @@
 
 module 下添加
 
-     implementation 'com.yanyi.benyanyi:permissionlib:1.0.7'
+     implementation 'com.yanyi.benyanyi:permissionlib:1.0.8'
 
 具体使用查看[wiki](https://github.com/BenYanYi/BasePermission/wiki)
 
 ### 版本更新
+* 2019-06-26更新(1.0.8) 删除重复方法
 * 2019-06-12更新(1.0.7) 优化方法，规范方法，修改包名，以便所有开源库统一包名
 * 2019-05-30更新(1.0.6) 优化注解调用方法
 * 2019-05-24更新(1.0.5) 添加注解调用申请权限
