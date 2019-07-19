@@ -131,9 +131,9 @@ public final class PermissionFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (positiveClick != null) {
-                    positiveClick.onClick(PermissionFragment.this.oList.toArray(new String[0]));
-                    dialog.dismiss();
+                    positiveClick.onClick(dialog, PermissionFragment.this.oList.toArray(new String[0]));
                 } else {
+                    dialog.dismiss();
                     requestPermission(code2);
                 }
             }
@@ -142,11 +142,16 @@ public final class PermissionFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (negativeClick != null) {
-                    negativeClick.onClick(PermissionFragment.this.oList.toArray(new String[0]));
-                    dialog.dismiss();
+                    negativeClick.onClick(dialog, PermissionFragment.this.oList.toArray(new String[0]));
                 } else {
-                    getActivity().finish();
                     dialog.dismiss();
+                    if (callBack != null) {
+                        FailureMsg failureMsg = new FailureMsg();
+                        failureMsg.setFailurePermissions(PermissionFragment.this.oList.toArray(new String[0]));
+                        failureMsg.setPermissionCode(permissionCode);
+                        callBack.onPermissionFailure(failureMsg);
+                        callBack.onPermissionComplete(permissionCode);
+                    }
                 }
             }
         });

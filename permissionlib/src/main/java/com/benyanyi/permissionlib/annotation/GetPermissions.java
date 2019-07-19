@@ -14,7 +14,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GetPermissions {
-    int permissionCode() default 0;
-
     String[] value() default {""};
 }

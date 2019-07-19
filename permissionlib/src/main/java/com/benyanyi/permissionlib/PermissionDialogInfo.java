@@ -1,5 +1,7 @@
 package com.benyanyi.permissionlib;
 
+import android.content.DialogInterface;
+
 /**
  * @author myLove
  * @date 2018-06-09 10:02
@@ -24,7 +26,7 @@ public final class PermissionDialogInfo {
          * @param failurePermissions
          */
         @Override
-        void onClick(String[] failurePermissions);
+        void onClick(DialogInterface dialog, String[] failurePermissions);
     }
 
     public interface NegativeClick extends PermissionDialogOnClick {
@@ -34,7 +36,7 @@ public final class PermissionDialogInfo {
          * @param failurePermissions
          */
         @Override
-        void onClick(String[] failurePermissions);
+        void onClick(DialogInterface dialog, String[] failurePermissions);
     }
 
 }

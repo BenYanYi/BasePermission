@@ -3,7 +3,7 @@ package com.benyanyi.permissionlib;
 import android.Manifest;
 
 /**
- * @author myLove
+ * @author YanYi
  * @date 2018-06-06 11:25
  * @email ben@yanyi.red
  * @overview

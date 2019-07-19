@@ -9,10 +9,10 @@ import android.util.Log;
 import com.benyanyi.permissionlib.PermissionBind;
 import com.benyanyi.permissionlib.PermissionDialogInfo;
 import com.benyanyi.permissionlib.annotation.GetPermissionComplete;
+import com.benyanyi.permissionlib.annotation.GetPermissionDialogInfo;
 import com.benyanyi.permissionlib.annotation.GetPermissionFailure;
 import com.benyanyi.permissionlib.annotation.GetPermissionSuccess;
 import com.benyanyi.permissionlib.annotation.GetPermissions;
-import com.benyanyi.permissionlib.msg.FailureMsg;
 
 /**
  * @author myLove
@@ -20,7 +20,7 @@ import com.benyanyi.permissionlib.msg.FailureMsg;
  * @email ben@yanyi.red
  * @overview
  */
-@GetPermissions(permissionCode = 1, value = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+@GetPermissions({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -30,19 +30,30 @@ public class MainActivity extends AppCompatActivity {
         PermissionBind.request(this, this);
     }
 
-    @GetPermissionSuccess(1)
-    private void success(int permissionCode) {
-        log(permissionCode);
+    @GetPermissionSuccess
+    private void success() {
+        log("成功");
     }
 
-    @GetPermissionFailure(1)
-    private void failure(FailureMsg failureMsg) {
-        log(failureMsg);
+    @GetPermissionFailure
+    private void failure(String[] failureMsg) {
+        StringBuilder s = new StringBuilder();
+        for (String str : failureMsg) {
+            s.append(str);
+        }
+        log(s.toString());
     }
 
-    @GetPermissionComplete(1)
-    private void complete(int permissionCode) {
-        log(permissionCode);
+    @GetPermissionComplete
+    private void complete() {
+        log("aaa");
+    }
+
+    @GetPermissionDialogInfo
+    private PermissionDialogInfo setPermissionDialogInfo(PermissionDialogInfo dialogInfo) {
+        dialogInfo.isShow = true;
+        dialogInfo.title = "哈哈哈";
+        return dialogInfo;
     }
 
     private void log(Object object) {

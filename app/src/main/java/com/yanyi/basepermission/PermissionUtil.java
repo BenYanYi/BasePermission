@@ -24,7 +24,7 @@ public class PermissionUtil {
         PermissionBind.request(activity, this);
     }
 
-    @GetPermissionSuccess({0, 1, 2})
+    @GetPermissionSuccess()
     private void success(int permissionCode) {
         log(permissionCode);
     }

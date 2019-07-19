@@ -21,19 +21,26 @@ public interface PermissionConfig {
      * @param info 弹窗信息
      * @return 当前
      */
-    PermissionConfig setDialogInfo(PermissionDialogInfo info);
+    PermissionConfig setPermissionDialogInfo(PermissionDialogInfo info);
+
+    /**
+     * 权限获取回调
+     *
+     * @param permissionCallBack
+     */
+    PermissionConfig setPermissionCallBack(PermissionCallBack permissionCallBack);
 
     /**
      * 判断权限是否需要请求
      */
-    void hasPermission();
+    void hasPermission(int permissionCode);
 
     /**
      * 判断权限是否需要请求
      *
      * @param callBack 回调
      */
-    void hasPermission(PermissionCallBack callBack);
+    void hasPermission(int permissionCode, PermissionCallBack callBack);
 
     /**
      * 判断权限是否需要请求
@@ -41,7 +48,7 @@ public interface PermissionConfig {
      * @param callBack    回调
      * @param permissions 权限
      */
-    void hasPermission(PermissionCallBack callBack, String... permissions);
+    void hasPermission(int permissionCode, PermissionCallBack callBack, String... permissions);
 
     /**
      * 判断权限是否需要请求
@@ -50,6 +57,15 @@ public interface PermissionConfig {
      * @param callBack    回调
      * @param permissions 权限
      */
-    void hasPermission(PermissionDialogInfo info, PermissionCallBack callBack, String... permissions);
+    void hasPermission(int permissionCode, PermissionDialogInfo info, String... permissions);
+
+    /**
+     * 判断权限是否需要请求
+     *
+     * @param info        弹窗配置
+     * @param callBack    回调
+     * @param permissions 权限
+     */
+    void hasPermission(int permissionCode, PermissionDialogInfo info, PermissionCallBack callBack, String... permissions);
 
 }

@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.app.FragmentManager;
 
 /**
- * @author myLove
+ * @author YanYi
  * @date 2018-06-06 10:40
  * @email ben@yanyi.red
- * @overview
+ * @overview 权限获取帮助类
  */
-public class PermissionHelper {
-    private static PermissionHelper instance;
+public class PermissionHelper implements PermissionConfig {
+    private static PermissionConfig instance;
     private Activity mActivity;
 
     private String tag = "PermissionHelper";
@@ -22,10 +22,8 @@ public class PermissionHelper {
         permissionFragment = getFragment();
     }
 
-    public static PermissionHelper getInstance(Activity activity) {
-//        if (instance == null) {
+    public static PermissionConfig getInstance(Activity activity) {
         instance = new PermissionHelper(activity);
-//        }
         return instance;
     }
 
@@ -44,18 +42,19 @@ public class PermissionHelper {
         return fragment;
     }
 
-    public PermissionHelper setPermissions(String... permissions) {
+    public PermissionConfig setPermissions(String... permissions) {
         this.permissionFragment.setPermissions(permissions);
         return this;
     }
 
-    public PermissionHelper setPermissionDialogInfo(PermissionDialogInfo info) {
+    public PermissionConfig setPermissionDialogInfo(PermissionDialogInfo info) {
         this.permissionFragment.setInfo(info);
         return this;
     }
 
-    public void setPermissionCallBack(PermissionCallBack callBack) {
+    public PermissionConfig setPermissionCallBack(PermissionCallBack callBack) {
         this.permissionFragment.setCallBack(callBack);
+        return this;
     }
 
     public void hasPermission(int permissionCode) {
