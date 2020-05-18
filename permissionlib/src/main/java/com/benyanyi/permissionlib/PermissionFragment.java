@@ -2,17 +2,18 @@ package com.benyanyi.permissionlib;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.benyanyi.permissionlib.msg.FailureMsg;
 
@@ -44,19 +45,19 @@ public final class PermissionFragment extends Fragment {
         setRetainInstance(true);
     }
 
-    public void setPermissions(String[] permissions) {
+    void setPermissions(String[] permissions) {
         this.permissions = permissions;
     }
 
-    public void setInfo(PermissionDialogInfo info) {
+    void setInfo(PermissionDialogInfo info) {
         this.info = info;
     }
 
-    public void setCallBack(PermissionCallBack callBack) {
+    void setCallBack(PermissionCallBack callBack) {
         this.callBack = callBack;
     }
 
-    public void startForPermissionResult(int permissionCode) {
+    void startForPermissionResult(int permissionCode) {
         this.permissionCode = permissionCode;
         if (checkPermission()) {
             if (this.callBack != null) {

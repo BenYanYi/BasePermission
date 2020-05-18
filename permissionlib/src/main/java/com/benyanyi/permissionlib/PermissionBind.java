@@ -1,12 +1,12 @@
 package com.benyanyi.permissionlib;
 
-import android.app.Activity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.benyanyi.permissionlib.annotation.GetPermissionComplete;
 import com.benyanyi.permissionlib.annotation.GetPermissionDialogInfo;
 import com.benyanyi.permissionlib.annotation.GetPermissionFailure;
-import com.benyanyi.permissionlib.annotation.GetPermissions;
 import com.benyanyi.permissionlib.annotation.GetPermissionSuccess;
+import com.benyanyi.permissionlib.annotation.GetPermissions;
 import com.benyanyi.permissionlib.msg.FailureMsg;
 
 import java.lang.reflect.Method;
@@ -22,13 +22,13 @@ public final class PermissionBind {
     private PermissionConfig permissionConfig;
     private Object object;
 
-    private PermissionBind(Activity activity, Object object) {
+    private PermissionBind(FragmentActivity activity, Object object) {
         this.object = object;
         this.permissionConfig = PermissionHelper.getInstance(activity);
         initPermission();
     }
 
-    public static PermissionBind request(Activity activity, Object object) {
+    public static PermissionBind request(FragmentActivity activity, Object object) {
         if (instance == null) {
             instance = new PermissionBind(activity, object);
         }
@@ -140,15 +140,13 @@ public final class PermissionBind {
             if (permissionFailure != null) {
                 Class<?>[] parameterTypes = method.getParameterTypes();
                 String str1 = "String[]";
-                if (parameterTypes != null) {
-                    for (Class<?> aClass : parameterTypes) {
-                        if (aClass.getSimpleName().equals(str1)) {
-                            method.setAccessible(true);
-                            try {
-                                method.invoke(this.object, (Object) failurePermissions);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                for (Class<?> aClass : parameterTypes) {
+                    if (aClass.getSimpleName().equals(str1)) {
+                        method.setAccessible(true);
+                        try {
+                            method.invoke(this.object, (Object) failurePermissions);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 }

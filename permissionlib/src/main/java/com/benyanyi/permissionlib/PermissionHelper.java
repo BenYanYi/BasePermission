@@ -1,7 +1,7 @@
 package com.benyanyi.permissionlib;
 
-import android.app.Activity;
-import android.app.FragmentManager;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * @author YanYi
@@ -11,28 +11,31 @@ import android.app.FragmentManager;
  */
 public class PermissionHelper implements PermissionConfig {
     private static PermissionConfig instance;
-    private Activity mActivity;
+    private FragmentActivity mActivity;
 
     private String tag = "PermissionHelper";
 
     private PermissionFragment permissionFragment;
 
-    private PermissionHelper(Activity activity) {
-        this.mActivity = activity;
+    private PermissionHelper(FragmentActivity fragmentActivity) {
+        this.mActivity = fragmentActivity;
         permissionFragment = getFragment();
     }
 
-    public static PermissionConfig getInstance(Activity activity) {
-        instance = new PermissionHelper(activity);
+    public static PermissionConfig getInstance(FragmentActivity fragmentActivity) {
+        if (instance == null) {
+            instance = new PermissionHelper(fragmentActivity);
+        }
         return instance;
     }
 
     private PermissionFragment getFragment() {
-        PermissionFragment fragment = (PermissionFragment) this.mActivity.getFragmentManager()
-                .findFragmentByTag(tag);
+//        PermissionFragment fragment = (PermissionFragment) this.mActivity.getFragmentManager()
+//                .findFragmentByTag(tag);
+        PermissionFragment fragment = (PermissionFragment) this.mActivity.getSupportFragmentManager().findFragmentByTag(tag);
         if (fragment == null) {
             fragment = new PermissionFragment();
-            FragmentManager fragmentManager = this.mActivity.getFragmentManager();
+            FragmentManager fragmentManager = this.mActivity.getSupportFragmentManager();
             fragmentManager
                     .beginTransaction()
                     .add(fragment, tag)
