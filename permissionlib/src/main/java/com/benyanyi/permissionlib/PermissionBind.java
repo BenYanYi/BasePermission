@@ -22,15 +22,15 @@ public final class PermissionBind {
     private PermissionConfig permissionConfig;
     private Object object;
 
-    private PermissionBind(FragmentActivity activity, Object object) {
+    private PermissionBind(FragmentActivity fragmentActivity, Object object) {
         this.object = object;
-        this.permissionConfig = PermissionHelper.getInstance(activity);
+        this.permissionConfig = PermissionHelper.getInstance(fragmentActivity);
         initPermission();
     }
 
-    public static PermissionBind request(FragmentActivity activity, Object object) {
+    public static PermissionBind request(FragmentActivity fragmentActivity, Object object) {
         if (instance == null) {
-            instance = new PermissionBind(activity, object);
+            instance = new PermissionBind(fragmentActivity, object);
         }
         return instance;
     }
