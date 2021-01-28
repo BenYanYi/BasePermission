@@ -25,7 +25,6 @@ implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.0'
   <type>aar</type>
 </dependency>
 ~~~
-具体使用查看[wiki](http://yanyis.space/android/basepermission/wikis)
 
 ### 版本更新
 * 2020-05-18更新(1.1.0) 将android support转成androidx支持,并将Maven库存放到个人服务器上
