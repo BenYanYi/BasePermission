@@ -1,6 +1,6 @@
 package com.benyanyi.permissionlib;
 
-import androidx.fragment.app.FragmentActivity;
+import android.app.Activity;
 
 import com.benyanyi.permissionlib.annotation.GetPermissionComplete;
 import com.benyanyi.permissionlib.annotation.GetPermissionDialogInfo;
@@ -22,15 +22,15 @@ public final class PermissionBind {
     private PermissionConfig permissionConfig;
     private Object object;
 
-    private PermissionBind(FragmentActivity fragmentActivity, Object object) {
+    private PermissionBind(Activity activity, Object object) {
         this.object = object;
-        this.permissionConfig = PermissionHelper.getInstance(fragmentActivity);
+        this.permissionConfig = PermissionHelper.getInstance(activity);
         initPermission();
     }
 
-    public static PermissionBind request(FragmentActivity fragmentActivity, Object object) {
+    public static PermissionBind request(Activity activity, Object object) {
         if (instance == null) {
-            instance = new PermissionBind(fragmentActivity, object);
+            instance = new PermissionBind(activity, object);
         }
         return instance;
     }
