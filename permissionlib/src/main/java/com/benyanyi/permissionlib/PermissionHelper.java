@@ -87,4 +87,8 @@ public class PermissionHelper implements PermissionConfig {
         this.setPermissionCallBack(callBack);
         this.permissionFragment.startForPermissionResult(permissionCode);
     }
+
+    public static void destroy() {
+        instance = null;
+    }
 }

@@ -1,14 +1,15 @@
 package com.yanyi.basepermission;
 
 import android.Manifest;
-import android.app.Activity;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.benyanyi.permissionlib.PermissionBind;
-import com.benyanyi.permissionlib.annotation.GetPermissions;
 import com.benyanyi.permissionlib.annotation.GetPermissionComplete;
 import com.benyanyi.permissionlib.annotation.GetPermissionFailure;
 import com.benyanyi.permissionlib.annotation.GetPermissionSuccess;
+import com.benyanyi.permissionlib.annotation.GetPermissions;
 import com.benyanyi.permissionlib.msg.FailureMsg;
 
 /**
@@ -20,7 +21,7 @@ import com.benyanyi.permissionlib.msg.FailureMsg;
 @GetPermissions({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
 public class PermissionUtil {
 
-    public void getPermission(Activity activity) {
+    public void getPermission(AppCompatActivity activity) {
         PermissionBind.request(activity, this);
     }
 

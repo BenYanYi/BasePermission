@@ -13,7 +13,7 @@ repositories {
 ~~~
 ### module 下添加
 ~~~
-implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.1'
+implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.2'
 ~~~
 
 或者
@@ -27,6 +27,7 @@ implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.1'
 ~~~
 
 ### 版本更新
+* 2021-02-27更新(1.1.2) 添加销毁方法，防止请求未销毁造成的报错
 * 2021-02-03更新(1.1.1) 将接收FragmentActivity更改为Activity
 * 2020-05-18更新(1.1.0) 将android support转成androidx支持,并将Maven库存放到个人服务器上
 * 2019-07-18更新(1.0.9) 优化拒绝权限通知弹窗，添加注解配置弹窗方法，优化注解方法，去除多余配置
