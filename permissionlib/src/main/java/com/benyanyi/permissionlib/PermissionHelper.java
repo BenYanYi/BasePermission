@@ -24,7 +24,11 @@ public class PermissionHelper implements PermissionConfig {
 
     public static PermissionConfig getInstance(Activity activity) {
         if (instance == null) {
-            instance = new PermissionHelper(activity);
+            synchronized (PermissionHelper.class) {
+                if (instance == null) {
+                    instance = new PermissionHelper(activity);
+                }
+            }
         }
         return instance;
     }
