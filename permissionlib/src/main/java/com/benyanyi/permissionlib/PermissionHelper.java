@@ -11,24 +11,28 @@ import android.app.FragmentManager;
  */
 public class PermissionHelper implements PermissionConfig {
     private static PermissionConfig instance;
-    private Activity mActivity;
+    private static Activity mActivity;
 
     private String tag = "PermissionHelper";
 
-    private PermissionFragment permissionFragment;
+    private final PermissionFragment permissionFragment;
 
-    private PermissionHelper(Activity activity) {
-        this.mActivity = activity;
+    private PermissionHelper() {
         permissionFragment = getFragment();
     }
 
     public static PermissionConfig getInstance(Activity activity) {
         if (instance == null) {
-            synchronized (PermissionHelper.class) {
-                if (instance == null) {
-                    instance = new PermissionHelper(activity);
-                }
-            }
+            mActivity = activity;
+            instance = new PermissionHelper();
+        }
+        if (mActivity == null) {
+            mActivity = activity;
+            instance = new PermissionHelper();
+        }
+        if (activity != mActivity) {
+            mActivity = activity;
+            instance = new PermissionHelper();
         }
         return instance;
     }
@@ -36,10 +40,10 @@ public class PermissionHelper implements PermissionConfig {
     private PermissionFragment getFragment() {
 //        PermissionFragment fragment = (PermissionFragment) this.mActivity.getFragmentManager()
 //                .findFragmentByTag(tag);
-        PermissionFragment fragment = (PermissionFragment) this.mActivity.getFragmentManager().findFragmentByTag(tag);
+        PermissionFragment fragment = (PermissionFragment) mActivity.getFragmentManager().findFragmentByTag(tag);
         if (fragment == null) {
             fragment = new PermissionFragment();
-            FragmentManager fragmentManager = this.mActivity.getFragmentManager();
+            FragmentManager fragmentManager = mActivity.getFragmentManager();
             fragmentManager
                     .beginTransaction()
                     .add(fragment, tag)

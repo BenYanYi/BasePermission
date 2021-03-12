@@ -13,7 +13,7 @@ repositories {
 ~~~
 ### module 下添加
 ~~~
-implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.2'
+implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.3'
 ~~~
 
 或者
@@ -21,12 +21,13 @@ implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.2'
 <dependency>
   <groupId>com.yanyi.benyanyi</groupId>
   <artifactId>PermissionHelper</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.3</version>
   <type>aar</type>
 </dependency>
 ~~~
 
 ### 版本更新
+* 2021-03-12更新(1.1.3) 修复不同页面调用权限请求时，activity为空报错
 * 2021-02-27更新(1.1.2) 添加销毁方法，防止请求未销毁造成的报错
 * 2021-02-03更新(1.1.1) 将接收FragmentActivity更改为Activity
 * 2020-05-18更新(1.1.0) 将android support转成androidx支持,并将Maven库存放到个人服务器上
