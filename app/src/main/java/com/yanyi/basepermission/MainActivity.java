@@ -7,13 +7,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.benyanyi.permissionlib.PermissionBind;
-import com.benyanyi.permissionlib.PermissionDialogInfo;
-import com.benyanyi.permissionlib.annotation.GetPermissionComplete;
-import com.benyanyi.permissionlib.annotation.GetPermissionDialogInfo;
-import com.benyanyi.permissionlib.annotation.GetPermissionFailure;
-import com.benyanyi.permissionlib.annotation.GetPermissionSuccess;
-import com.benyanyi.permissionlib.annotation.GetPermissions;
+import com.benyanyi.permission.kt.PermissionHelper;
+import com.benyanyi.permission.kt.callback.PermissionAction;
 
 /**
  * @author myLove
@@ -21,41 +16,24 @@ import com.benyanyi.permissionlib.annotation.GetPermissions;
  * @email ben@yanyi.red
  * @overview
  */
-@GetPermissions({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
-        PermissionBind.request(this, this);
+        PermissionHelper.Companion.getInstance(this)
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .request()
+                .onPermissionSuccess(new PermissionAction() {
+                    @Override
+                    public void accept() {
+
+                    }
+                });
     }
 
-    @GetPermissionSuccess
-    private void success() {
-        log("成功");
-    }
-
-    @GetPermissionFailure
-    private void failure(String[] failureMsg) {
-        StringBuilder s = new StringBuilder();
-        for (String str : failureMsg) {
-            s.append(str);
-        }
-        log(s.toString());
-    }
-
-    @GetPermissionComplete
-    private void complete() {
-        log("aaa");
-    }
-
-    @GetPermissionDialogInfo
-    private PermissionDialogInfo setPermissionDialogInfo(PermissionDialogInfo dialogInfo) {
-        dialogInfo.isShow = true;
-        dialogInfo.title = "哈哈哈";
-        return dialogInfo;
-    }
 
     private void log(Object object) {
         Log.d(defaultTag(), object.toString());
@@ -79,11 +57,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return tag;
-    }
-
-    private PermissionDialogInfo dialogInfo() {
-        PermissionDialogInfo dialogInfo = new PermissionDialogInfo();
-        dialogInfo.isShow = false;
-        return dialogInfo;
     }
 }
