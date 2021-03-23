@@ -3,10 +3,8 @@ package com.benyanyi.permission.kt
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.PermissionInfo
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -61,7 +59,7 @@ class PermissionFragment : Fragment() {
      */
     private fun checkPermission(): Boolean {
         oList.clear()
-        if (permissions != null && permissions!!.isNotEmpty()) {
+        if (permissions == null || permissions!!.isEmpty()) {
             return true
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -144,7 +142,7 @@ class PermissionFragment : Fragment() {
     private fun showDialog() {
         val builder = AlertDialog.Builder(activity)
         val title = info?.title ?: "权限不足"
-        val message = info?.message ?: "需要必须的权限才能正常使用本应用"
+        val message = info?.message ?: "需要获取该权限才能正常使用应用功能"
         val positiveText = info?.positiveText ?: "重新获取权限"
         val negativeText = info?.negativeText ?: "退出"
         val isShow = info?.isShow ?: false

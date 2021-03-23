@@ -22,6 +22,11 @@ interface PermissionConfig {
      */
     fun setPermissionDialogInfo(info: PermissionDialogInfo): PermissionConfig
 
+    /**
+     * 设置默认权限弹窗
+     */
+    fun setDefaultPermissionDialogInfo(): PermissionConfig
+
     fun request(): PermissionRequest
 
 }

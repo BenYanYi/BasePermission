@@ -35,15 +35,18 @@ class PermissionRequest {
         return callBack
     }
 
-    fun onPermissionSuccess(action: PermissionAction) {
+    fun onPermissionSuccess(action: PermissionAction): PermissionRequest {
         this.successAction = action
+        return this
     }
 
-    fun onPermissionFailure(consumer: PermissionConsumer<Array<out String>>) {
+    fun onPermissionFailure(consumer: PermissionConsumer<Array<out String>>): PermissionRequest {
         this.failureConsumer = consumer
+        return this
     }
 
-    fun onPermissionComplete(action: PermissionAction) {
+    fun onPermissionComplete(action: PermissionAction): PermissionRequest {
         this.completeAction = action
+        return this
     }
 }

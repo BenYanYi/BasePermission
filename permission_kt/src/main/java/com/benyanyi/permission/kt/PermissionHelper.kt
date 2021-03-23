@@ -1,6 +1,7 @@
 package com.benyanyi.permission.kt
 
 import androidx.appcompat.app.AppCompatActivity
+import com.benyanyi.permission.kt.info.BenYanYiPermissionDialogInfo
 import com.benyanyi.permission.kt.info.PermissionDialogInfo
 
 /**
@@ -58,6 +59,11 @@ class PermissionHelper : PermissionConfig {
 
     override fun setPermissionDialogInfo(info: PermissionDialogInfo): PermissionConfig {
         fragment.setPermissionInfo(info)
+        return this
+    }
+
+    override fun setDefaultPermissionDialogInfo(): PermissionConfig {
+        fragment.setPermissionInfo(BenYanYiPermissionDialogInfo.getInfo(mActivity))
         return this
     }
 

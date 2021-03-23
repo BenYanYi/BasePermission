@@ -1,2 +1,2 @@
-include ':permission-kt'
+include ':permission_kt'
 include ':app', ':permissionlib'

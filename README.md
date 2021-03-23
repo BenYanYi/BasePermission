@@ -12,21 +12,16 @@ repositories {
     }
 ~~~
 ### module 下添加
-~~~
-implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.3'
-~~~
 
-或者
 ~~~
-<dependency>
-  <groupId>com.yanyi.benyanyi</groupId>
-  <artifactId>PermissionHelper</artifactId>
-  <version>1.1.3</version>
-  <type>aar</type>
-</dependency>
+//java版本
+implementation 'com.yanyi.benyanyi:PermissionHelper:1.1.3'
+//kotlin版本
+implementation 'com.yanyi.benyanyi:PermissionHelper-kt:1.1.3'
 ~~~
 
 ### 版本更新
+* 2021-03-23更新(1.1.3) 添加kotlin版1.1.3版本
 * 2021-03-12更新(1.1.3) 修复不同页面调用权限请求时，activity为空报错
 * 2021-02-27更新(1.1.2) 添加销毁方法，防止请求未销毁造成的报错
 * 2021-02-03更新(1.1.1) 将接收FragmentActivity更改为Activity

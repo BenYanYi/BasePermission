@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.benyanyi.permission.kt.PermissionHelper;
-import com.benyanyi.permission.kt.callback.PermissionAction;
 
 /**
  * @author myLove
@@ -23,15 +22,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
         PermissionHelper.Companion.getInstance(this)
-                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .setPermissions(Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                .setDefaultPermissionDialogInfo()
                 .request()
-                .onPermissionSuccess(new PermissionAction() {
-                    @Override
-                    public void accept() {
-
+                .onPermissionSuccess(() -> log("请求成功"))
+                .onPermissionFailure(strings -> {
+                    StringBuilder str = new StringBuilder();
+                    for (String s : strings) {
+                        str.append("\n").append(s);
                     }
-                });
+                    log(str.toString());
+                })
+                .onPermissionComplete(() -> log("请求完成"));
     }
 
 

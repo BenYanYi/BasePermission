@@ -1,7 +1,5 @@
 package com.benyanyi.permission.kt.callback
 
-import com.benyanyi.permission.kt.msg.FailureMsg
-
 /**
  * @author YanYi
  * @date 2021/3/22 16:16
